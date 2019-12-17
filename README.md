@@ -1,2 +1,1 @@
-# tm-number-util
-TM Java Number Util
+# Java 2 Swagger UI Generator
