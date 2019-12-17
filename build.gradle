@@ -1,0 +1,85 @@
+
+group 'com.hmtmcse.j2swagger'
+version '1.0.0'
+
+
+repositories {
+    mavenCentral()
+}
+
+
+
+def dependencyList = []
+
+
+dependencies {
+    dependencyList.each {
+        if (findProject(":" + it)){
+            compile project(":" + it)
+        }
+    }
+}
+
+Boolean isPublish = false
+if (isPublish) {
+    bintray {
+
+        user = (project.hasProperty('bintrayUser') ? project.property('bintrayUser') : "hmtmcse" )
+        key =  (project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : "123" )
+        publish = true
+        override = true
+        publications = ['mavenJava']
+        pkg {
+            repo = 'maven'
+            name = 'com.hmtmcse.j2swagger'
+            vcsUrl = 'https://github.com/hmtmcse/j2swagger-ui.git'
+            licenses = ['Apache-2.0']
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = 'j2swagger-ui'
+                groupId = 'com.hmtmcse'
+                from components.java
+                artifact sourcesJar
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
+                pom {
+                    name = 'Java 2 Swagger Util'
+                    description = 'Thtis it the library of Java 2 Swagger'
+                    url = 'http://www.hmtmcse.com/app-and-lib/java/j2swagger-ui'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'hmtmcse'
+                            name = 'H.M Touhid Mia'
+                            email = 'hmtm.cse@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:https://github.com/hmtmcse/j2swagger-ui.git'
+                        developerConnection = 'scm:git:https://github.com/hmtmcse/j2swagger-ui.git'
+                        url = 'https://github.com/hmtmcse/j2swagger-ui'
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}
