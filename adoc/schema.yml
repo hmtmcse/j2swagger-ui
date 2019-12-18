@@ -1,0 +1,32 @@
+schema:
+  type: array
+  items:
+    type: string
+    default: available
+    enum:
+      - available
+      - pending
+      - sold
+
+
+schema:
+  $ref: '#/components/schemas/Pet'
+
+schema:
+  type: integer
+  format: int64
+
+schema:
+  type: array
+  items:
+    $ref: '#/components/schemas/User'
+
+
+schema:
+  properties:
+    name:
+      type: string
+      description: Updated name of the pet
+    status:
+      type: string
+      description: Updated status of the pet
