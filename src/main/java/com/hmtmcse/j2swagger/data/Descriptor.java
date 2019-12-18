@@ -1,5 +1,6 @@
 package com.hmtmcse.j2swagger.data;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Descriptor {
@@ -9,5 +10,6 @@ public class Descriptor {
     public ExternalDocs externalDocs;
     public List<Server> servers;
     public List<Tag> tags;
+    public LinkedHashMap<String, Object> components;
 
 }
