@@ -9,7 +9,9 @@ repositories {
 
 
 
-def dependencyList = []
+def dependencyList = [
+        "parser4java"
+]
 
 
 dependencies {

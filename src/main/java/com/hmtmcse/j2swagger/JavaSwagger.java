@@ -4,6 +4,8 @@ import com.hmtmcse.j2swagger.data.Descriptor;
 import com.hmtmcse.j2swagger.data.ExternalDocs;
 import com.hmtmcse.j2swagger.data.Info;
 import com.hmtmcse.j2swagger.data.Server;
+import com.hmtmcse.parser4java.YamlProcessor;
+import com.hmtmcse.parser4java.common.Parser4JavaException;
 
 import java.util.ArrayList;
 
@@ -35,6 +37,25 @@ public class JavaSwagger {
         return servers(url, null);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    public String getYamlString() {
+        YamlProcessor yamlProcessor = new YamlProcessor();
+        try {
+            return yamlProcessor.klassToString(descriptor);
+        } catch (Parser4JavaException e) {
+           return null;
+        }
+    }
 
 
 }
