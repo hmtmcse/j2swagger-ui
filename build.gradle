@@ -10,7 +10,8 @@ repositories {
 
 
 def dependencyList = [
-        "parser4java"
+        "parser4java",
+        "java-tm-util",
 ]
 
 

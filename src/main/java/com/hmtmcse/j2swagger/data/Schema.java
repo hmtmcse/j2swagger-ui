@@ -1,7 +1,8 @@
 package com.hmtmcse.j2swagger.data;
 
-public class Schema extends SchemaProperty {
+public class Schema extends PropertyAttr {
 
-    public String $ref;
-    public String minimum;
+
+
+
 }

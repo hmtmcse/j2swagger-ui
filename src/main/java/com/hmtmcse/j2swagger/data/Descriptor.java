@@ -10,6 +10,7 @@ public class Descriptor {
     public ExternalDocs externalDocs;
     public List<Server> servers;
     public List<Tag> tags;
+    public LinkedHashMap<String, LinkedHashMap<String, DefPath>> paths;
     public LinkedHashMap<String, LinkedHashMap<String, Object>> components;
 
 }
