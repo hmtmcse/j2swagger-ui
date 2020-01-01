@@ -8,15 +8,26 @@ public class DefResponse {
 
     public String description;
     public LinkedHashMap<String, Object> content = new LinkedHashMap<>();
+    public LinkedHashMap<String, Header> headers;
 
     public DefResponse setDescription(String description) {
         this.description = description;
         return this;
     }
 
+    public Header addHeader(String name){
+        if (this.headers == null){
+            this.headers = new LinkedHashMap<>();
+        }
+        this.headers.put(name, new Header());
+        return this.headers.get(name);
+    }
+
     public DefResponse json(Component component) {
         LinkedHashMap<String, Schema> json = new LinkedHashMap<>();
-        json.put(JSConstant.schema, new Schema());
+        Schema schema = new Schema();
+        schema.addRef(component.ref);
+        json.put(JSConstant.schema, schema);
         content.put(JSConstant.applicationJson, json);
         return this;
     }
@@ -38,9 +49,11 @@ public class DefResponse {
     }
 
     public DefResponse xml(Component component) {
-        LinkedHashMap<String, Schema> schema = new LinkedHashMap<>();
-        schema.put(JSConstant.schema, new Schema());
-        content.put(JSConstant.applicationXml, schema);
+        LinkedHashMap<String, Schema> xml = new LinkedHashMap<>();
+        Schema schema = new Schema();
+        schema.addRef(component.ref);
+        xml.put(JSConstant.schema, schema);
+        content.put(JSConstant.applicationXml, xml);
         return this;
     }
 
