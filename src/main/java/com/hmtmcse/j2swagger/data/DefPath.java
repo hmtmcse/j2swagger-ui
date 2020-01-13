@@ -17,6 +17,10 @@ public class DefPath<T> {
     public Boolean deprecated = false;
     public LinkedHashMap<String, DefResponse> responses;
 
+    public DefPath(final Class<T> klass){
+        this.t = klass.cast(this);
+    }
+
     public T setSummary(String summary) {
         this.summary = summary;
         return t;
