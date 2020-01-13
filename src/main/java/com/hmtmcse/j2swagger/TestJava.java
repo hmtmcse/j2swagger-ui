@@ -43,8 +43,17 @@ public class TestJava {
                 .addEnum("pending")
                 .addEnum("sold");
 
-        UrlDefinition request = javaSwagger.addUrl("/pet/findByStatus");
+        UrlDefinition request = javaSwagger.addUrl("/pet");
+        request.putMethod()
+                .setSummary("Update an existing pet")
+                .addTags("pet");
+
+        request = javaSwagger.addUrl("/pet/findByStatus");
+        request.getMethod();
+        request.postMethod();
+        request.deleteMethod();
         request.putMethod();
+
 
         System.out.println(javaSwagger.getYamlString());
     }

@@ -1,5 +1,6 @@
 package com.hmtmcse.j2swagger.requestresponse;
 
+import com.hmtmcse.j2swagger.common.JSConstant;
 import com.hmtmcse.j2swagger.data.DefPath;
 import com.hmtmcse.j2swagger.data.Descriptor;
 
@@ -9,6 +10,10 @@ public class UrlDefinition {
 
     public LinkedHashMap<String, DefPath> path;
     public String url;
+    private GetRequestResponse getRequestResponse;
+    private PostRequestResponse postRequestResponse;
+    private PutRequestResponse putRequestResponse;
+    private DeleteRequestResponse deleteRequestResponse;
 
     public UrlDefinition() {}
 
@@ -22,18 +27,26 @@ public class UrlDefinition {
     }
 
     public GetRequestResponse getMethod(){
-        return null;
+        this.getRequestResponse = new GetRequestResponse();
+        this.path.put(JSConstant.get, this.getRequestResponse);
+        return this.getRequestResponse;
     }
 
     public PostRequestResponse postMethod(){
-        return null;
+        this.postRequestResponse = new PostRequestResponse();
+        this.path.put(JSConstant.post, this.postRequestResponse);
+        return this.postRequestResponse;
     }
 
     public PutRequestResponse putMethod(){
-        return null;
+        this.putRequestResponse = new PutRequestResponse();
+        this.path.put(JSConstant.put, this.putRequestResponse);
+        return this.putRequestResponse;
     }
 
     public DeleteRequestResponse deleteMethod(){
-        return null;
+        this.deleteRequestResponse = new DeleteRequestResponse();
+        this.path.put(JSConstant.delete, this.deleteRequestResponse);
+        return this.deleteRequestResponse;
     }
 }

@@ -19,5 +19,10 @@ public class JSConstant {
     public static final String bolean = "boolean";
     public static final String array = "array";
 
+    public static final String get = "get";
+    public static final String post = "post";
+    public static final String put = "put";
+    public static final String delete = "delete";
+
 
 }
