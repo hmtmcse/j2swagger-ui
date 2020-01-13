@@ -1,6 +1,7 @@
 package com.hmtmcse.j2swagger;
 
 import com.hmtmcse.j2swagger.common.JSConstant;
+import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
 
 public class TestJava {
 
@@ -41,6 +42,9 @@ public class TestJava {
                 .addEnum("available")
                 .addEnum("pending")
                 .addEnum("sold");
+
+        UrlDefinition request = javaSwagger.addUrl("/pet/findByStatus");
+        request.putMethod();
 
         System.out.println(javaSwagger.getYamlString());
     }

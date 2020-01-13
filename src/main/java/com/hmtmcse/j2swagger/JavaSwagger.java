@@ -5,6 +5,7 @@ import com.hmtmcse.j2swagger.data.Descriptor;
 import com.hmtmcse.j2swagger.data.ExternalDocs;
 import com.hmtmcse.j2swagger.data.Info;
 import com.hmtmcse.j2swagger.data.Server;
+import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
 import com.hmtmcse.parser4java.YamlProcessor;
 import com.hmtmcse.parser4java.common.Parser4JavaException;
 
@@ -17,6 +18,7 @@ public class JavaSwagger {
 
     private Descriptor descriptor = new Descriptor();
     private LinkedHashMap<String, Component> schemas;
+    private UrlDefinition urlDefinition;
 
 
     public Info addInfo(String title){
@@ -50,6 +52,11 @@ public class JavaSwagger {
         return this.schemas.get(name);
     }
 
+
+    public UrlDefinition addUrl(String url) {
+        this.urlDefinition = new UrlDefinition(descriptor, url);
+        return this.urlDefinition;
+    }
 
     public Component addComponentSecurityScheme(String name){
         return null;
