@@ -4,7 +4,7 @@ public class Parameter {
 
     public String name;
     public String description;
-    public String in;
+    public ParameterIn in;
     public Boolean required;
     public Boolean deprecated;
     public Boolean allowEmptyValue;
