@@ -74,15 +74,23 @@ public class TestJava {
 
 
         request = javaSwagger.addUrl("/pet/findByStatus");
-        GetRequestResponse getRequestResponse = request.getMethod();
+        GetRequestResponse getRequestResponse = request.getMethod().addTags("pet");
+
+        Schema schema = new Schema().addArray("string");
+        schema.itemAttrs()
+                .setDefault("available")
+                .addEnum("available")
+                .addEnum("pending")
+                .addEnum("sold");
         getRequestResponse.addQueryParam("status")
                 .setRequired()
-                .setSchema(new Schema().addArray("string"))
+                .setSchema(schema)
                 .setDescription("Status values that need to be considered for filter");
-
-        request.postMethod();
-        request.deleteMethod();
-        request.putMethod();
+        getRequestResponse.response200()
+                .json(pet)
+                .xml(pet)
+                .setDescription("successful operation");
+        getRequestResponse.response400();
 
 
         System.out.println(javaSwagger.getYamlString());

@@ -30,6 +30,9 @@ public class PropertyList<T> {
         this.t = klass.cast(this);
     }
 
+    public Items itemAttrs(){
+        return this.items;
+    }
 
     public T setType(String type) {
         this.type = type;
