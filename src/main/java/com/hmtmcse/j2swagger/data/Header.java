@@ -10,5 +10,8 @@ public class Header {
         return this;
     }
 
+    public Schema addSchema(String type, String format) {
+        return new Schema(type, format);
+    }
 
 }

@@ -1,11 +1,13 @@
 package com.hmtmcse.j2swagger;
 
 import com.hmtmcse.j2swagger.common.JSConstant;
+import com.hmtmcse.j2swagger.requestresponse.PutRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
 
 public class TestJava {
 
     public static void main(String[] args) {
+
         JavaSwagger javaSwagger = new JavaSwagger();
         javaSwagger.addInfo("Java Swagger")
                 .setDescription("A short description of the application. [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.")
@@ -44,11 +46,11 @@ public class TestJava {
                 .addEnum("sold");
 
         UrlDefinition request = javaSwagger.addUrl("/pet");
-        request.putMethod()
-                .setSummary("Update an existing pet")
-                .addTags("pet")
-                .jsonRequest()
-                .addRef(pet);
+        PutRequestResponse putRequestResponse = request.putMethod();
+        putRequestResponse.setSummary("Update an existing pet");
+        putRequestResponse.addTags("pet");
+        putRequestResponse.xmlRequest().addRef(pet);
+        putRequestResponse.jsonRequest().addRef(pet);
 
         request = javaSwagger.addUrl("/pet/findByStatus");
         request.getMethod();

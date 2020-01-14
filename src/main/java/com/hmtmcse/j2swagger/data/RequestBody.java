@@ -12,21 +12,29 @@ public class RequestBody {
     public LinkedHashMap<String, LinkedHashMap<String, Schema>> content;
     private String lastContentType;
 
-    public RequestBody() {}
-
-    public RequestBody(String contentType) {
-        this.lastContentType = contentType;
-        this.content = new LinkedHashMap<>();
-        this.content.put(contentType, new LinkedHashMap<>());
-        this.content.get(contentType).put(JSConstant.schema, new Schema());
+    public RequestBody() {
     }
 
-    public RequestBody addRef(Component component){
+    public RequestBody(String contentType) {
+        initNew(contentType);
+    }
+
+    public RequestBody initNew(String contentType) {
+        this.lastContentType = contentType;
+        if (this.content == null) {
+            this.content = new LinkedHashMap<>();
+        }
+        this.content.put(contentType, new LinkedHashMap<>());
+        this.content.get(contentType).put(JSConstant.schema, new Schema());
+        return this;
+    }
+
+    public RequestBody addRef(Component component) {
         content.get(lastContentType).get(JSConstant.schema).addRef(component.ref);
         return this;
     }
 
-    public RequestBody addArrayRef(Component component){
+    public RequestBody addArrayRef(Component component) {
         content.get(lastContentType).get(JSConstant.schema).addArrayRef(component.ref);
         return this;
     }
