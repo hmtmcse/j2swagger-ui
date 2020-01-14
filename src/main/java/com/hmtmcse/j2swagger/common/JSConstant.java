@@ -10,6 +10,8 @@ public class JSConstant {
     public static final String type = "type";
     public static final String applicationJson = "application/json";
     public static final String applicationXml = "application/xml";
+    public static final String multipart = "multipart/form-data";
+    public static final String formRequest = "application/x-www-form-urlencoded";
     public static final String componentSchemasRef = "#/components/schemas/";
 
 

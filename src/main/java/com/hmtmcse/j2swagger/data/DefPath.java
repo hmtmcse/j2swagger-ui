@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DefPath<T> {
 
-    private T t;
+    protected T t;
     public List<String> tags;
     public String summary;
     public String description;

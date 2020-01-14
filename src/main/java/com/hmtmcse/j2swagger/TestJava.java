@@ -46,7 +46,9 @@ public class TestJava {
         UrlDefinition request = javaSwagger.addUrl("/pet");
         request.putMethod()
                 .setSummary("Update an existing pet")
-                .addTags("pet");
+                .addTags("pet")
+                .jsonRequest()
+                .addRef(pet);
 
         request = javaSwagger.addUrl("/pet/findByStatus");
         request.getMethod();
