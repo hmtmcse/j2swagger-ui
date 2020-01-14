@@ -1,6 +1,8 @@
 package com.hmtmcse.j2swagger;
 
 import com.hmtmcse.j2swagger.common.JSConstant;
+import com.hmtmcse.j2swagger.data.Schema;
+import com.hmtmcse.j2swagger.requestresponse.GetRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.PostRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.PutRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
@@ -72,7 +74,12 @@ public class TestJava {
 
 
         request = javaSwagger.addUrl("/pet/findByStatus");
-        request.getMethod();
+        GetRequestResponse getRequestResponse = request.getMethod();
+        getRequestResponse.addQueryParam("status")
+                .setRequired()
+                .setSchema(new Schema().addArray("string"))
+                .setDescription("Status values that need to be considered for filter");
+
         request.postMethod();
         request.deleteMethod();
         request.putMethod();

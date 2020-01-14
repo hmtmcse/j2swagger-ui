@@ -7,8 +7,6 @@ import java.util.List;
 public class GetRequestResponse extends DefParameters<GetRequestResponse> {
 
 
-    public List<Parameter> parameters;
-
     public GetRequestResponse() {
         super(GetRequestResponse.class);
     }
