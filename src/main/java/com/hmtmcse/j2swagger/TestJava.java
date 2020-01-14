@@ -1,6 +1,7 @@
 package com.hmtmcse.j2swagger;
 
 import com.hmtmcse.j2swagger.common.JSConstant;
+import com.hmtmcse.j2swagger.requestresponse.PostRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.PutRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
 
@@ -49,8 +50,26 @@ public class TestJava {
         PutRequestResponse putRequestResponse = request.putMethod();
         putRequestResponse.setSummary("Update an existing pet");
         putRequestResponse.addTags("pet");
-        putRequestResponse.xmlRequest().addRef(pet);
-        putRequestResponse.jsonRequest().addRef(pet);
+        putRequestResponse.xmlRequest()
+                .addRef(pet)
+                .setRequired()
+                .setDescription("Pet object that needs to be added to the store");
+        putRequestResponse.jsonRequest().addRef(pet).setRequired();
+        putRequestResponse.response400().setDescription("Invalid ID supplied");
+        putRequestResponse.response404().setDescription("Pet not found");
+        putRequestResponse.response405().setDescription("Validation exception");
+
+
+        PostRequestResponse postRequestResponse = request.postMethod();
+        postRequestResponse.addTags("pet");
+        postRequestResponse.setSummary("Add a new pet to the store");
+        postRequestResponse.jsonRequest()
+                .addRef(pet)
+                .setRequired()
+                .setDescription("Pet object that needs to be added to the store");
+        postRequestResponse.response405().setDescription("Invalid input");
+
+
 
         request = javaSwagger.addUrl("/pet/findByStatus");
         request.getMethod();

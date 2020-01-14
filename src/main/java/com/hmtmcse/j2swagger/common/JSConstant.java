@@ -26,5 +26,12 @@ public class JSConstant {
     public static final String put = "put";
     public static final String delete = "delete";
 
+    public static final String R400 = "400";
+    public static final String R404 = "404";
+    public static final String R405 = "405";
+    public static final String R500 = "500";
+    public static final String R200 = "200";
+    public static final String R201 = "201";
+
 
 }

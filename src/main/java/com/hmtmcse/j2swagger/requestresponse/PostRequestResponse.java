@@ -1,9 +1,12 @@
 package com.hmtmcse.j2swagger.requestresponse;
 
-import com.hmtmcse.j2swagger.data.RequestBody;
+import com.hmtmcse.j2swagger.data.DefRequestBody;
 
-public class PostRequestResponse extends GetRequestResponse {
+public class PostRequestResponse extends DefRequestBody<PostRequestResponse> {
 
-    public RequestBody requestBody;
+
+    public PostRequestResponse() {
+        super(PostRequestResponse.class);
+    }
 
 }
