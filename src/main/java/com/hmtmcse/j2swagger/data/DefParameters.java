@@ -30,23 +30,23 @@ public class DefParameters<T> extends DefPath<T> {
         super(klass);
     }
 
-    public DefResponse response400() {
-        return this.addResponse(JSConstant.R400);
+    public DefResponse response400(String description) {
+        return this.addResponse(JSConstant.R400).setDescription(description);
     }
 
-    public DefResponse response404() {
-        return this.addResponse(JSConstant.R404);
+    public DefResponse response404(String description) {
+        return this.addResponse(JSConstant.R404).setDescription(description);
     }
 
-    public DefResponse response405() {
-        return this.addResponse(JSConstant.R405);
+    public DefResponse response405(String description) {
+        return this.addResponse(JSConstant.R405).setDescription(description);
     }
 
-    public DefResponse response500() {
-        return this.addResponse(JSConstant.R500);
+    public DefResponse response500(String description) {
+        return this.addResponse(JSConstant.R500).setDescription(description);
     }
 
-    public DefResponse response200() {
+    public DefResponse response200(String description) {
         return this.addResponse(JSConstant.R200);
     }
 

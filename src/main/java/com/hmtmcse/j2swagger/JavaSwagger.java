@@ -6,6 +6,7 @@ import com.hmtmcse.j2swagger.data.ExternalDocs;
 import com.hmtmcse.j2swagger.data.Info;
 import com.hmtmcse.j2swagger.data.Server;
 import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
+import com.hmtmcse.parser4java.JsonProcessor;
 import com.hmtmcse.parser4java.YamlProcessor;
 import com.hmtmcse.parser4java.common.Parser4JavaException;
 
@@ -95,5 +96,14 @@ public class JavaSwagger {
         }
     }
 
+    public String getJsonString() {
+        JsonProcessor jsonProcessor = new JsonProcessor();
+        try {
+            copyComponentSchema();
+            return jsonProcessor.klassToString(descriptor);
+        } catch (Parser4JavaException e) {
+            return null;
+        }
+    }
 
 }

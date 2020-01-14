@@ -57,9 +57,9 @@ public class TestJava {
                 .setRequired()
                 .setDescription("Pet object that needs to be added to the store");
         putRequestResponse.jsonRequest().addRef(pet).setRequired();
-        putRequestResponse.response400().setDescription("Invalid ID supplied");
-        putRequestResponse.response404().setDescription("Pet not found");
-        putRequestResponse.response405().setDescription("Validation exception");
+        putRequestResponse.response400("Invalid ID supplied");
+        putRequestResponse.response404("Pet not found");
+        putRequestResponse.response405("Validation exception");
 
 
         PostRequestResponse postRequestResponse = request.postMethod();
@@ -69,7 +69,7 @@ public class TestJava {
                 .addRef(pet)
                 .setRequired()
                 .setDescription("Pet object that needs to be added to the store");
-        postRequestResponse.response405().setDescription("Invalid input");
+        postRequestResponse.response405("Invalid input");
 
 
 
@@ -86,14 +86,14 @@ public class TestJava {
                 .setRequired()
                 .setSchema(schema)
                 .setDescription("Status values that need to be considered for filter");
-        getRequestResponse.response200()
+        getRequestResponse.response200("successful operation")
                 .json(pet)
-                .xml(pet)
-                .setDescription("successful operation");
-        getRequestResponse.response400();
+                .xml(pet);
+        getRequestResponse.response400("Invalid status value");
 
 
-        System.out.println(javaSwagger.getYamlString());
+//        System.out.println(javaSwagger.getYamlString());
+        System.out.println(javaSwagger.getJsonString());
     }
 
 }

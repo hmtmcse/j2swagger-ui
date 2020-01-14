@@ -23,6 +23,19 @@ dependencies {
     }
 }
 
+jar{
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes (
+                'Implementation-Title': 'Java Object To Swagger UI',
+                'Implementation-Version': archiveVersion,
+                'Main-Class': 'com.hmtmcse.j2swagger.TestJava'
+        )
+    }
+}
+
 Boolean isPublish = false
 if (isPublish) {
     bintray {
