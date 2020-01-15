@@ -24,7 +24,7 @@ public class RequestBody {
         if (this.content == null) {
             this.content = new LinkedHashMap<>();
         }
-        this.content.put(contentType, new LinkedHashMap<>());
+        this.content.put(contentType, new LinkedHashMap<String, Schema>());
         this.content.get(contentType).put(JSConstant.schema, new Schema());
         return this;
     }

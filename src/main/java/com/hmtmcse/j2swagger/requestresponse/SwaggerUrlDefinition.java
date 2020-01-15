@@ -6,7 +6,7 @@ import com.hmtmcse.j2swagger.data.Descriptor;
 
 import java.util.LinkedHashMap;
 
-public class UrlDefinition {
+public class SwaggerUrlDefinition {
 
     public LinkedHashMap<String, DefPath> path;
     public String url;
@@ -15,9 +15,9 @@ public class UrlDefinition {
     private PutRequestResponse putRequestResponse;
     private DeleteRequestResponse deleteRequestResponse;
 
-    public UrlDefinition() {}
+    public SwaggerUrlDefinition() {}
 
-    public UrlDefinition(Descriptor descriptor, String url){
+    public SwaggerUrlDefinition(Descriptor descriptor, String url){
         this.path = new LinkedHashMap<>();
         this.url = url;
         if (descriptor.paths == null){

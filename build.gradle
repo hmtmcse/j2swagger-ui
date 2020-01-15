@@ -8,12 +8,20 @@ repositories {
 }
 
 
-
 def dependencyList = [
-        "parser4java",
-        "java-tm-util",
+//        "parser4java",
+//        "java-tm-util",
 ]
 
+compileJava {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
 
 dependencies {
     dependencyList.each {
@@ -21,6 +29,9 @@ dependencies {
             compile project(":" + it)
         }
     }
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.9.0'
+
 }
 
 jar{

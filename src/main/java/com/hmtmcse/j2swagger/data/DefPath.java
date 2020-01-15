@@ -1,10 +1,10 @@
 package com.hmtmcse.j2swagger.data;
 
-import com.hmtmcse.tmutil.TomTom;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class DefPath<T> {
 
@@ -13,7 +13,7 @@ public class DefPath<T> {
     public String summary;
     public String description;
     public ExternalDocs externalDocs;
-    public String operationId = TomTom.random15Char();
+    public String operationId = UUID.randomUUID().toString().substring(0, 15).replaceAll("-", "");;
     public Boolean deprecated = false;
     public LinkedHashMap<String, DefResponse> responses;
 

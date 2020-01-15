@@ -5,7 +5,7 @@ import com.hmtmcse.j2swagger.data.Schema;
 import com.hmtmcse.j2swagger.requestresponse.GetRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.PostRequestResponse;
 import com.hmtmcse.j2swagger.requestresponse.PutRequestResponse;
-import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
+import com.hmtmcse.j2swagger.requestresponse.SwaggerUrlDefinition;
 
 public class TestJava {
 
@@ -48,7 +48,7 @@ public class TestJava {
                 .addEnum("pending")
                 .addEnum("sold");
 
-        UrlDefinition request = javaSwagger.addUrl("/pet");
+        SwaggerUrlDefinition request = javaSwagger.addUrl("/pet");
         PutRequestResponse putRequestResponse = request.putMethod();
         putRequestResponse.setSummary("Update an existing pet");
         putRequestResponse.addTags("pet");
@@ -91,8 +91,6 @@ public class TestJava {
                 .xml(pet);
         getRequestResponse.response400("Invalid status value");
 
-
-//        System.out.println(javaSwagger.getYamlString());
         System.out.println(javaSwagger.getJsonString());
     }
 

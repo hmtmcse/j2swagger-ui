@@ -1,14 +1,14 @@
 package com.hmtmcse.j2swagger;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hmtmcse.j2swagger.common.JSConstant;
 import com.hmtmcse.j2swagger.data.Descriptor;
 import com.hmtmcse.j2swagger.data.ExternalDocs;
 import com.hmtmcse.j2swagger.data.Info;
 import com.hmtmcse.j2swagger.data.Server;
-import com.hmtmcse.j2swagger.requestresponse.UrlDefinition;
-import com.hmtmcse.parser4java.JsonProcessor;
-import com.hmtmcse.parser4java.YamlProcessor;
-import com.hmtmcse.parser4java.common.Parser4JavaException;
+import com.hmtmcse.j2swagger.requestresponse.SwaggerUrlDefinition;
+
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,7 +19,7 @@ public class JavaSwagger {
 
     private Descriptor descriptor = new Descriptor();
     private LinkedHashMap<String, Component> schemas;
-    private UrlDefinition urlDefinition;
+    private SwaggerUrlDefinition swaggerUrlDefinition;
 
 
     public Info addInfo(String title){
@@ -54,9 +54,9 @@ public class JavaSwagger {
     }
 
 
-    public UrlDefinition addUrl(String url) {
-        this.urlDefinition = new UrlDefinition(descriptor, url);
-        return this.urlDefinition;
+    public SwaggerUrlDefinition addUrl(String url) {
+        this.swaggerUrlDefinition = new SwaggerUrlDefinition(descriptor, url);
+        return this.swaggerUrlDefinition;
     }
 
     public Component addComponentSecurityScheme(String name){
@@ -69,7 +69,7 @@ public class JavaSwagger {
             if (descriptor.components == null) {
                 descriptor.components = new LinkedHashMap<>();
             }
-            descriptor.components.put(JSConstant.schemas, new LinkedHashMap<>());
+            descriptor.components.put(JSConstant.schemas, new LinkedHashMap<String, Object>());
             Component component;
             LinkedHashMap<String, Object> componentMap;
             for (Map.Entry<String, Component> entry : schemas.entrySet()) {
@@ -86,23 +86,24 @@ public class JavaSwagger {
     }
 
 
-    public String getYamlString() {
-        YamlProcessor yamlProcessor = new YamlProcessor();
-        try {
-            copyComponentSchema();
-            return yamlProcessor.klassToString(descriptor);
-        } catch (Parser4JavaException e) {
-           return null;
-        }
-    }
-
+//    public String getYamlString() {
+//        YamlProcessor yamlProcessor = new YamlProcessor();
+//        try {
+//            copyComponentSchema();
+//            return yamlProcessor.klassToString(descriptor);
+//        } catch (Parser4JavaException e) {
+//           return null;
+//        }
+//    }
+//
     public String getJsonString() {
-        JsonProcessor jsonProcessor = new JsonProcessor();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
             copyComponentSchema();
-            return jsonProcessor.klassToString(descriptor);
-        } catch (Parser4JavaException e) {
-            return null;
+            return mapper.writeValueAsString(descriptor);
+        } catch (Exception e) {
+            return "";
         }
     }
 
